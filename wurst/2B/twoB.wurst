@@ -1,0 +1,22 @@
+package twoB
+
+import UnitObjEditing
+import ObjectIdGenerator
+import UnitIds
+import ObjectIds
+import AbilityIds
+//import FSA_Obj_Gen
+
+@configurable public constant TWO_B_UNIT_ID = compiletime(HERO_ID_GEN.next())
+
+@compiletime function generate()
+    new HeroDefinition(TWO_B_UNIT_ID, UnitIds.warden)
+    ..setHeroAbilities(commaList('A0WK', 'A134', 'A130', 'A132'))
+    ..setNormalAbilities(commaList(AbilityIds.inventory, 'A12M', 'A12P'))
+    ..setModelFile("2B Final 2 no TC.mdx")
+    ..setName("2B")
+    ..setProperNames("YoRHa Battle Android")
+    ..setScalingValue(1.5)
+    //..setSpeedBase(700)
+    //..setSelectionScale(data)
+    ..setProperNamesUsed(1)
