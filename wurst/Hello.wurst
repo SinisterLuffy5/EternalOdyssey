@@ -82,4 +82,6 @@ init
 				u.setMoveSpeed(s.get(1).toReal())
 				print(u.getName() + ":" + s.get(1).toReal().toString(0))
 			ENUM_GROUP.clear()
+		else if msg == "-quit" or msg == "-q"
+			EndGame(false)
 
