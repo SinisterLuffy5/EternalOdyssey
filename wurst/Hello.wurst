@@ -45,7 +45,8 @@ init
 	EventListener.add(EVENT_PLAYER_UNIT_DEATH) -> 
 		if EventData.getTriggerPlayer() == DUMMY_HOSTILE_PLAYER
 			createUnit(DUMMY_HOSTILE_PLAYER, ChooseRandomCreep(7), playableMapRect.randomPoint())..setMaxHP(10000)..setHP(10000)
-
+	registerPlayerUnitEvent(EVENT_PLAYER_UNIT_SPELL_EFFECT) ->
+		print(GetAbilityBaseStringFieldById(EventData.getSpellAbilityId(), ABILITY_SF_NAME) + ":" + EventData.getSpellAbilityId().toRawCode())
 	EventListener.add(EVENT_PLAYER_CHAT_FILTER) -> 
 		let msg = EventData.getChatMessage()
 		let s = msg.split(" ")
