@@ -80,5 +80,6 @@ init
 			ENUM_GROUP.enumUnitsSelected(p, null)
 			for u from ENUM_GROUP
 				u.setMoveSpeed(s.get(1).toReal())
+				print(u.getName() + ":" + s.get(1).toReal().toString(0))
 			ENUM_GROUP.clear()
 
