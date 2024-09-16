@@ -78,6 +78,6 @@ init
 		else if msg.contains("-speed")
 			ENUM_GROUP.enumUnitsSelected(p, null)
 			for u from ENUM_GROUP
-				u.setMoveSpeed(700)
+				u.setMoveSpeed(s.get(1).toReal())
 			ENUM_GROUP.clear()
 
