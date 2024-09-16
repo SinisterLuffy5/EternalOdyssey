@@ -75,4 +75,9 @@ init
 			cam_z = s.get(1).toReal()				
 		else if msg.contains("-creep")
 			createUnit(players[s.get(1).toInt()], ChooseRandomCreep(s.get(2).toInt()), getCameraTargetPosition())
+		else if msg.contains("-speed")
+			ENUM_GROUP.enumUnitsSelected(p, null)
+			for u from ENUM_GROUP
+				u.setMoveSpeed(700)
+			ENUM_GROUP.clear()
 
