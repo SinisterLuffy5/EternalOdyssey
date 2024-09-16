@@ -1,9 +1,78 @@
 package Hello
 
+import twoB
+//import FSA_Obj_Gen
+import ClosureEvents
+import ClosureTimers
+import StringUtils
+import ObjectIds
+import UnitIds
+import MapBounds
+
 /* Hello and welcome to Wurst!
 This is just a demo package. 
 You can modify it to tests things out 
 and then later delete it and create your own, new packages.
 Enjoy WurstScript? Consider starring our repo https://github.com/wurstscript/WurstScript */ 
+real cam_z = 1500.
 init
-	print("Hello World")
+	// Preload
+	createUnit(DUMMY_PLAYER, UnitIds.peasant, vec2(3952.7, - 2110.7))..addAbility('AOWK')..kill()
+	createUnit(DUMMY_PLAYER, 'k54l', vec2(3952.7, - 2110.7))
+	..addAbility('A134')
+	..addAbility('A132')
+	..addAbility('A130')
+	..addAbility('A12P')
+	..kill()
+	createUnit(DUMMY_PLAYER, 'k542', vec2(3952.7, - 2110.7))..addAbility('A12M')..kill()
+	//createUnit(DUMMY_PLAYER, UnitIds.peasant, vec2(3952.7, - 2110.7))..addAbility(SPELL_AOWK)..kill()
+	//createUnit(DUMMY_PLAYER, UnitIds.peasant, vec2(3952.7, - 2110.7))..addAbility(SPELL_AOWK)..kill()
+
+	// TEST
+	Cheat("iseedeadpeople")
+	Cheat("thereisnospoon")
+	players[0]
+	..setAbilityAvailable('A12P', false)
+	..setAbilityAvailable('A12M', false)
+	doPeriodically(1/60) (CallbackPeriodic cb) ->
+		if GetCameraField(CAMERA_FIELD_ZOFFSET) != cam_z
+			SetCameraField(CAMERA_FIELD_ZOFFSET, cam_z, 0)
+	hideOriginFrames()
+	let un = createUnit(players[0], TWO_B_UNIT_ID, playableMapRect.randomPoint())
+	players[0]..select(un)..panCamToTimed(un, 0)
+	EditBlackBorders(0, 0)
+	createUnit(DUMMY_HOSTILE_PLAYER, ChooseRandomCreep(7), playableMapRect.randomPoint())..setMaxHP(10000)..setHP(10000)
+	EventListener.add(EVENT_PLAYER_UNIT_DEATH) -> 
+		if EventData.getTriggerPlayer() == DUMMY_HOSTILE_PLAYER
+			createUnit(DUMMY_HOSTILE_PLAYER, ChooseRandomCreep(7), playableMapRect.randomPoint())..setMaxHP(10000)..setHP(10000)
+
+	EventListener.add(EVENT_PLAYER_CHAT_FILTER) -> 
+		let msg = EventData.getChatMessage()
+		let s = msg.split(" ")
+		let p = EventData.getTriggerPlayer()
+		if msg.contains("-lvl")
+			ENUM_GROUP.enumUnitsSelected(EventData.getTriggerPlayer(), null)
+			for u from ENUM_GROUP
+				if u.isType(UNIT_TYPE_HERO)
+					u.setLevel(s.get(1).toInt(), false)
+					print(u.getName() + " was set to level " + s.get(1))
+		else if msg.contains("-unit")
+			let u = createUnit(players[s.get(2).toInt()], s.get(1).fromRawCode(), getCameraTargetPosition())
+			print(u.getName() + " was created at " + u.getPos().toString())
+			ENUM_GROUP.clear()
+		else if msg == "-mycolor"
+			print("Your color: " + EventData.getTriggerPlayer().getColor().toColor().toString())
+		else if msg == "-2b id"
+			print(GetAbilityName(TWO_B_UNIT_ID) + TWO_B_UNIT_ID.toRawCode())
+		else if msg == "-nocd"
+			doPeriodically(1) (CallbackPeriodic cb) ->
+				ENUM_GROUP.enumUnitsSelected(p, null)
+				for u from ENUM_GROUP
+					u.resetCooldown()
+				ENUM_GROUP.clear()
+		else if msg.contains("-camz")
+			SetCameraField(CAMERA_FIELD_ZOFFSET, s.get(1).toReal(), 0)
+			cam_z = s.get(1).toReal()				
+		else if msg.contains("-creep")
+			createUnit(players[s.get(1).toInt()], ChooseRandomCreep(s.get(2).toInt()), getCameraTargetPosition())
+
