@@ -1,34 +1,155 @@
 package Hello
 
-import twoB
+// TEST Everything below will be deleted for public release
+
+//import twoB
 //import FSA_Obj_Gen
 import ClosureEvents
 import ClosureTimers
 import StringUtils
 import ObjectIds
-import UnitIds
+//import UnitIds
+import HeroSelection
 import MapBounds
+import Execute
 
-/* Hello and welcome to Wurst!
-This is just a demo package. 
-You can modify it to tests things out 
-and then later delete it and create your own, new packages.
-Enjoy WurstScript? Consider starring our repo https://github.com/wurstscript/WurstScript */ 
+int array unit_ids
+string array hero_images
 real cam_z = 1500.
 init
 	// Preload
-	createUnit(DUMMY_PLAYER, UnitIds.peasant, vec2(3952.7, - 2110.7))..addAbility('AOWK')..kill()
-	createUnit(DUMMY_PLAYER, 'k54l', vec2(3952.7, - 2110.7))
-	..addAbility('A134')
-	..addAbility('A132')
-	..addAbility('A130')
-	..addAbility('A12P')
-	..kill()
-	createUnit(DUMMY_PLAYER, 'k542', vec2(3952.7, - 2110.7))..addAbility('A12M')..kill()
+	// createUnit(DUMMY_PLAYER, UnitIds.peasant, vec2(3952.7, - 2110.7))..addAbility('AOWK')..kill()
+	// createUnit(DUMMY_PLAYER, 'k54l', vec2(3952.7, - 2110.7))
+	// ..addAbility('A134')
+	// ..addAbility('A132')
+	// ..addAbility('A130')
+	// ..addAbility('A12P')
+	// ..kill()
+	// createUnit(DUMMY_PLAYER, 'k542', vec2(3952.7, - 2110.7))..addAbility('A12M')..kill()
 	//createUnit(DUMMY_PLAYER, UnitIds.peasant, vec2(3952.7, - 2110.7))..addAbility(SPELL_AOWK)..kill()
 	//createUnit(DUMMY_PLAYER, UnitIds.peasant, vec2(3952.7, - 2110.7))..addAbility(SPELL_AOWK)..kill()
+	
+init
+	unit_ids[1] = 'H082'
+	unit_ids[2] = 'H01L'
+	unit_ids[3] = 'H08U'
+	unit_ids[4] = 'H08M'
+	unit_ids[5] = 'H08B'
+	unit_ids[6] = 'H08V'
+	unit_ids[7] = 'H08L'
+	unit_ids[8] = 'H08N'
+	unit_ids[9] = 'H08R'
+	unit_ids[10] = 'H08D'
+	unit_ids[11] = 'H08Q'
+	unit_ids[12] = 'H088'
+	unit_ids[13] = 'H089'
+	unit_ids[14] = 'H08S'
+	unit_ids[15] = 'H08E'
+	unit_ids[16] = 'H08J'
+	unit_ids[17] = 'H086'
+	unit_ids[18] = 'H08F'
+	unit_ids[19] = 'H08C'
+	unit_ids[20] = 'H08O'
+	unit_ids[21] = 'H002'
+	unit_ids[22] = 'HAG1'
+	unit_ids[23] = 'HAG3'
+	unit_ids[24] = 'STR1'
+	unit_ids[25] = 'STR2'
+	unit_ids[26] = 'STR3'
+	unit_ids[27] = 'STR4'
+	unit_ids[28] = 'AGI2'
+	unit_ids[29] = 'H06D'
+	unit_ids[30] = 'H07M'
+	unit_ids[31] = 'AGI8'
+	unit_ids[32] = 'H06G'
+	unit_ids[33] = 'H085'
+	unit_ids[34] = 'AGI6'
+	unit_ids[35] = 'H100'
+	unit_ids[36] = 'H102'
+	unit_ids[37] = 'H07L'
+	unit_ids[38] = 'H103'
+	unit_ids[39] = 'STR5'
+	unit_ids[40] = 'H105'
+	unit_ids[41] = 'H106'
+	unit_ids[42] = 'AGI9'
+	unit_ids[43] = 'H007'
+	unit_ids[44] = 'H008'
+	unit_ids[45] = 'AGI3'
+	unit_ids[46] = 'AGI4'
+	unit_ids[47] = 'AGI5'
+	unit_ids[48] = 'AGI7'
 
-	// TEST
+init
+	hero_images[1] = "BlooImage.blp"
+	hero_images[2] = "MinatoImage.blp"
+	hero_images[3] = "GojoImage.blp"
+	hero_images[4] = "MokouSImage.blp"
+	hero_images[5] = "MuramasaImage.blp"
+	hero_images[6] = "MomijiImage.blp"
+	hero_images[7] = "AlphaLuciaImage.blp"
+	hero_images[8] = "ShirosakiImage.blp"
+	hero_images[9] = "SalterImage.blp"
+	hero_images[10] = "GenmImage.blp"
+	hero_images[11] = "MajinEXImage.blp"
+	hero_images[12] = "MadokaImage.blp"
+	hero_images[13] = "ArcueidImage.blp"
+	hero_images[14] = "RyougiImage.blp"
+	hero_images[15] = "HydeImage.blp"
+	hero_images[16] = "DenjiImage.blp"
+	hero_images[17] = "KotoriImage.blp"
+	hero_images[18] = "KuugaImage.blp"
+	hero_images[19] = "TohnoImage.blp"
+	hero_images[20] = "DangaiImage.blp"
+	hero_images[21] = "ShadowImage.blp"
+	hero_images[22] = "LuffyOniImage.blp"
+	hero_images[23] = "SawadaImage.blp"
+	hero_images[24] = "KyoImage.blp"
+	hero_images[25] = "IzayoiImage.blp"
+	hero_images[26] = "ShizuoImage.blp"
+	hero_images[27] = "KarnaImage.blp"
+	hero_images[28] = "RozwelImage.blp"
+	hero_images[29] = "KDashImage.blp"
+	hero_images[30] = "SatsujinkiImage.blp"
+	hero_images[31] = "BlackGokuImage.blp"
+	hero_images[32] = "VegitoImage.blp"
+	hero_images[33] = "GogetaSS4Image.blp"
+	hero_images[34] = "ShikiBWImage.blp"
+	hero_images[35] = "NaoZaImage.blp"
+	hero_images[36] = "SinonImage.blp"
+	hero_images[37] = "RentaroImage.blp"
+	hero_images[38] = "RyougiAssImage.blp"
+	hero_images[39] = "GiornoImage.blp"
+	hero_images[40] = "KianaImage.blp"
+	hero_images[41] = "BeastImage.blp"
+	hero_images[42] = "DanteImage.blp"
+	hero_images[43] = ""
+	hero_images[44] = ""
+	hero_images[45] = "KulaImage.blp"
+	hero_images[46] = "NekoImage.blp"
+	hero_images[47] = ""
+	hero_images[48] = ""
+
+	let hs = new HeroSelection(GAME_UI, 48)
+	..setButtonGap(0, 0)
+	..setButtonSize(0.03, 0.03)
+	..setHeroImagePos(0.6, 0.3)
+	..setHeroImageSize(0.1, 0.2)
+	..setHeroImageTexture("Pick\\PickImage.blp")
+	..setSelectModel("neon_sprite.mdx")
+	..setSelectScale(0.6)
+	..setPos(0.1, 0.4)
+	..show(false)
+
+	execute() -> 
+		for i = 1 to 48
+			hs.addUnitType(unit_ids[i], hero_images[i])
+
+	EventListener.add(EVENT_PLAYER_END_CINEMATIC) -> 
+		if hs.hero_image.isVisible()
+			hs.show(false)
+		else
+			hs.show(true)
+
 	Cheat("iseedeadpeople")
 	Cheat("thereisnospoon")
 	players[0]
@@ -38,8 +159,8 @@ init
 		if GetCameraField(CAMERA_FIELD_ZOFFSET) != cam_z
 			SetCameraField(CAMERA_FIELD_ZOFFSET, cam_z, 0)
 	hideOriginFrames()
-	let un = createUnit(players[0], TWO_B_UNIT_ID, playableMapRect.randomPoint())
-	players[0]..select(un)..panCamToTimed(un, 0)
+	//let un = createUnit(players[0], TWO_B_UNIT_ID, playableMapRect.randomPoint())
+	//players[0]..select(un)..panCamToTimed(un, 0)
 	EditBlackBorders(0, 0)
 	createUnit(DUMMY_HOSTILE_PLAYER, ChooseRandomCreep(7), playableMapRect.randomPoint())..setMaxHP(10000)..setHP(10000)
 	EventListener.add(EVENT_PLAYER_UNIT_DEATH) -> 
@@ -64,7 +185,7 @@ init
 		else if msg == "-mycolor"
 			print("Your color: " + EventData.getTriggerPlayer().getColor().toColor().toString())
 		else if msg == "-2b id"
-			print(GetAbilityName(TWO_B_UNIT_ID) + TWO_B_UNIT_ID.toRawCode())
+			//print(GetAbilityName(TWO_B_UNIT_ID) + TWO_B_UNIT_ID.toRawCode())
 		else if msg == "-nocd"
 			doPeriodically(1) (CallbackPeriodic cb) ->
 				ENUM_GROUP.enumUnitsSelected(p, null)
